@@ -11,5 +11,6 @@ class Index
     public function hello($name = 'ThinkPHP5')
     {
         return 'hello,' . $name;
+        echo '	url = https://github.com/9ismile/smile5.1.gi111t';
     }
 }
