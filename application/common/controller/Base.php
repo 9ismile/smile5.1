@@ -2,14 +2,18 @@
 namespace app\common\controller;
 
 use think\App;
+use think\Container;
 use think\Controller;
+use think\Facade;
 use Zewail\Api\Api;
 
 class Base extends Controller
 {
-    use Api;
-
-    protected $uid = null;
+    protected $uid = ''; // 用户uid
+    protected $group_id = ''; // 用户操作组
+    protected $repository = []; // 模型仓库
+    protected $is_authorize = true; // 是否需要授权登录
+    protected $operation = false;
 
     public function __construct(App $app = null)
     {
@@ -19,18 +23,36 @@ class Base extends Controller
 
     private function init()
     {
-        //绑定容器可以减少实例化
-        $this->bindContainer();
-        $this->validateToken();
-        $this->response->array([]);
+        // 绑定类到容器
+        $this->initContainer();
+
+        $this->validateAuthority();
+//        $this->validateToken();
+//        $this->response->array([]);
+        echo outMessageJson(200);
+        exit();
     }
 
-    public function bindContainer()
+    public function initContainer()
     {
-        bind([
+        $this->bindClassToContainer();
+        $this->initContainerClass();
+    }
 
-        ]);
-        return ;
+    public function bindClassToContainer()
+    {
+        Container::set('Authority','app\common\controller\Authority');
+    }
+
+    public function initContainerClass()
+    {
+        Container::get('Authority');
+    }
+
+    public function validateAuthority()
+    {
+        $authority_class = Container::get('Authority');
+        $authority_class->run($this->is_authorize,$this->request);
     }
 
 }

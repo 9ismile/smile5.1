@@ -25,7 +25,7 @@ class BaseService
     {
         $this->init();
         if(!$this->operation){
-            return outMessageArray(200);
+
         }
     }
 
@@ -37,7 +37,6 @@ class BaseService
     private function isAuthorize()
     {
         if(empty($this->uid) && $this->authorize){
-            return outMessageArray(200);
         }
     }
 }
