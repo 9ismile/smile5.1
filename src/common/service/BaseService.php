@@ -9,34 +9,34 @@
 namespace src\common\service;
 
 
+use app\facade\AuthorityFacade;
 use src\common\repository\BaseRepository;
+use think\App;
+use think\Container;
 use think\Request;
 
 class BaseService
 {
-    protected $uid = ''; // 用户uid
-    protected $group_id = ''; // 用户操作组
-    protected $repository = []; // 模型仓库
-    protected $authorize = true; // 是否需要授权登录
-    protected $authority = []; //操作权限
-    protected $operation = false;
+    protected $app = null;
+    protected $request = null;
+    protected $uid = 0; // 用户uid
+    protected $shop_id = 0; // 用户店铺id
+    protected $platform_id = 0; // 用户平台id
 
-    public function __construct(BaseRepository $baseRepository)
+    public function __construct(App $app = null)
     {
+        $this->app = $app ?: Container::get('app');
+        $this->request = $this->app['request'];
         $this->init();
-        if(!$this->operation){
-
-        }
     }
 
     private function init()
     {
-        return $this->isAuthorize();
+
     }
 
     private function isAuthorize()
     {
-        if(empty($this->uid) && $this->authorize){
-        }
+
     }
 }

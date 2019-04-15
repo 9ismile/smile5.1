@@ -18,13 +18,13 @@
 /**
  * 封装api返回数据
  * @param int $code
+ * @param string $type 功能组消息类型
  * @param array $data
  * @param string $msg
- * @param string $type 功能组消息类型
  * @return mixed
  */
 
-function packageMessage($code = 200, $data = array(), $msg = '', $type = 'c'){
+function packageMessage($code = 200, $type = 'c', $data = array(), $msg = ''){
     $msg = empty($msg) ? getMessageByCode($code,$type) : $msg;
     $result = array(
         'code' => $code,
@@ -35,12 +35,12 @@ function packageMessage($code = 200, $data = array(), $msg = '', $type = 'c'){
     return $result;
 }
 
-function outMessageJson($code = 200, $data = array(), $msg = '', $type = 'c'){
-    return json_encode(packageMessage($code, $data, $msg, $type));
+function outMessageJson($code = 200,  $type = 'c', $data = array(), $msg = ''){
+    return json_encode(packageMessage($code, $type, $data, $msg));
 }
 
-function outMessageArray($code = 200, $data = array(), $msg = '', $type = 'c'){
-    return packageMessage($code, $data, $msg, $type);
+function outMessageArray($code = 200, $type = 'c', $data = array(), $msg = ''){
+    return packageMessage($code, $type, $data, $msg);
 }
 
 
@@ -58,6 +58,9 @@ function getMessageByCode($code = 200, $type = 'c')
         case 'c' :
             $message_code = $message_code_array['c'];
             break;
+        case 'auth' :
+            $message_code = $message_code_array['auth'];
+            break;
         case 'u' :
             $message_code = $message_code_array['u'];
             break;
@@ -68,7 +71,6 @@ function getMessageByCode($code = 200, $type = 'c')
             $message_code = $message_code_array['c'];
             break;
     }
-
     $msg = '';
     if(isset($message_code[$code])){
         $msg = $message_code[$code];

@@ -7,33 +7,58 @@
  */
 namespace app\common\controller;
 
-use src\user\service\test;
 use think\Facade;
 
 class Authority
 {
 
     private $key = '';
-    private $authority = true;
+    private $is_auth = true;
     private $user_service = null;
+    private $token = '';
 
-    public function __construct(test $test){
-        $this->user_service = $test;
+
+    public function __construct(){
+//        $this->user_service = $test;
         $this->key = '3ddaeb82fbba964fb3461d4e4f1342eb'; //smile
     }
 
-    public function run($authority = true, $request = null)
+    /**
+     * 授权运行入口
+     * @param bool $is_auth
+     * @param null $request
+     * @return mixed
+     */
+    public function run($is_auth = true, $request = null)
     {
-        dump($request);
+        if(!$is_auth) return outMessageArray(100,'auth');
+        $this->validateToken();
     }
 
+    /**
+     * 设置授权key
+     * @param string $key
+     * @return mixed
+     */
     public function setKey($key = '')
     {
-        if(empty($key)) return outMessageArray(-100);
+        if(empty($key)) return outMessageArray(-100,'auth');
         $this->key = $key;
     }
 
-    public function createToken()
+    /**
+     * 获取授权key
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+
+    public function createToken(){}
+
+    private function validateToken()
     {
 
     }

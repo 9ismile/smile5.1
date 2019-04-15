@@ -5,7 +5,7 @@
 * extend 第三方类库
 * model  注入到repository层
 * repository  注入到service层
-* service  定义一个入口文件，入口文件多继承于该功能块下的类
+* service  定义一个功能入口文件，入口文件多继承于该功能块下的类
 * service注入到控制器层
 
 # 目录

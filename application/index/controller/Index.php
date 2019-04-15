@@ -1,21 +1,23 @@
 <?php
 namespace app\index\controller;
 
-use app\common\controller\Base;
+use app\common\controller\BaseController;
 use src\common\service\BaseService;
-use src\user\service\test;
+use src\user\run\LoginRun;
 use think\App;
 
-class Index extends Base
+class Index extends BaseController
 {
+    public $is_auth = false;
+
     public function __construct(App $app = null)
     {
         parent::__construct($app);
     }
 
-    public function index(test $test)
+    public function index(LoginRun $loginRun)
     {
-        $test->index();
+        $loginRun->initLogin();
     }
 
     public function hello($name = 'ThinkPHP5')
