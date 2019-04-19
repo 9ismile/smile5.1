@@ -9,17 +9,14 @@ namespace src\common\repository;
 
 use src\common\model\BaseModel;
 use think\Validate;
+use think\Db;
 
+/**
+ *  后期优化BaseRepository
+ * Class BaseRepository
+ * @package src\common\repository
+ */
 class BaseRepository
 {
-    protected $model = null;
-
-    public function __construct(BaseModel $baseModel)
-    {
-        $this->model = $baseModel;
-    }
-
-
-
-
+    public function __construct(){}
 }

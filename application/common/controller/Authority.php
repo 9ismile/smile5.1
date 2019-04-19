@@ -8,13 +8,14 @@
 namespace app\common\controller;
 
 use think\Facade;
+use Zewail\Api\Facades\JWT;
 
 class Authority
 {
 
     private $key = '';
-    private $is_auth = true;
-    private $user_service = null;
+    private $isAuth = true;
+    private $userService = null;
     private $token = '';
 
 
@@ -56,7 +57,10 @@ class Authority
     }
 
 
-    public function createToken(){}
+    public function createToken($data)
+    {
+        return JWT::attempt($data);
+    }
 
     private function validateToken()
     {

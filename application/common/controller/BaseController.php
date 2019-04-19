@@ -2,7 +2,6 @@
 namespace app\common\controller;
 
 use app\facade\AuthorityFacade;
-use src\user\service\test;
 use think\App;
 use think\Container;
 use think\Controller;
@@ -13,9 +12,9 @@ Loader::addNamespace('src', Loader::getRootPath() . 'src' . DIRECTORY_SEPARATOR)
 class BaseController extends Controller
 {
     protected $uid = ''; // 用户uid
-    protected $shop_id = ''; // 用户操作组
-    protected $platform_id = ''; // 用户店铺id
-    protected $is_auth = true; // 是否需要授权登录
+    protected $shopId = ''; // 店铺id
+    protected $platformId = ''; // 平台id
+    protected $isAuth = true; // 是否需要授权登录
 
     public function __construct(App $app = null)
     {
@@ -27,7 +26,7 @@ class BaseController extends Controller
     {
         // 绑定类到容器
         $this->initContainer();
-        AuthorityFacade::run($this->is_auth, $this->request);
+        AuthorityFacade::run($this->isAuth, $this->request);
 //        echo outMessageJson(200);
 //        exit();
     }

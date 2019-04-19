@@ -129,7 +129,7 @@ class BaseModel extends Model
      * @param $condition
      * @param string $field
      */
-    public function getInfo($condition = '', $field = '*')
+    public function getInfo($condition = [], $field = '*')
     {
         $info = $this->where($condition)
             ->field($field)

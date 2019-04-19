@@ -20,8 +20,8 @@ class BaseService
     protected $app = null;
     protected $request = null;
     protected $uid = 0; // 用户uid
-    protected $shop_id = 0; // 用户店铺id
-    protected $platform_id = 0; // 用户平台id
+    protected $shopId = 0; // 用户店铺id
+    protected $platformId = 0; // 用户平台id
 
     public function __construct(App $app = null)
     {

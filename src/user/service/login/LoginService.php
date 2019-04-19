@@ -8,17 +8,22 @@
 namespace src\user\service\login;
 
 use src\common\api\BaseApi;
+use src\common\service\BaseService;
+use src\user\repository\LoginRepository;
 
-trait LoginService
+class LoginService extends BaseService implements BaseApi
 {
-    public function __construct()
-    {
+    private $userRepository = null;
 
+    public function __construct(LoginRepository $userRepository)
+    {
+        parent::__construct();
+        $this->userRepository = $userRepository;
     }
 
     public function initLogin()
     {
-        dump($this->app);
-       echo $this->uid;
+
+        $this->userRepository->getUserInfo(['uid'=>1],'*');
     }
 }

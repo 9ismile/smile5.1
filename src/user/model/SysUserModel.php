@@ -8,7 +8,6 @@
 
 namespace src\user\model;
 
-
 use src\common\model\BaseModel;
 
 class SysUserModel extends BaseModel
